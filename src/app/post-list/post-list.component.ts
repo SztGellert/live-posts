@@ -15,5 +15,6 @@ export class PostListComponent {
   }
 
   ngOnInit(): void {
+    this.listOfPosts = this.postService.getPosts();
   }
 }
