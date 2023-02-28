@@ -14,7 +14,7 @@
         <label>Image Path</label>
         <input class="form-control" formControlName="imagePath" type="text">
       </div>
-      <button class="btn btn-success" type="submit">Save</button>
+      <button [disabled]="form.invalid" class="btn btn-success" type="submit">Save</button>
       |
       <button class="btn btn-primary" type="reset">Clear</button>
     </form>
