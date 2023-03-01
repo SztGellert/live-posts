@@ -18,4 +18,8 @@ export class HeaderComponent {
     this.backEndService.saveData();
   }
 
+  onFetch() {
+    console.log("onFetch() Called!")
+    this.backEndService.fetchData();
+  }
 }

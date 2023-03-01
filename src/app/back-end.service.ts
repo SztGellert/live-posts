@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {PostService} from "./post.service";
 import {Post} from "./post.model";
 import {HttpClient} from "@angular/common/http";
+import {tap} from "rxjs";
 
 //dataPath https://live-posts-95045-default-rtdb.firebaseio.com/
 
@@ -25,5 +26,15 @@ export class BackEndService {
   }
 
   //Fetch
+  fetchData() {
+    this.http
+      .get<Post[]>("https://live-posts-95045-default-rtdb.firebaseio.com/posts.json")
+      .pipe(
+        tap((listOfPosts: Post[]) => {
+          console.log(listOfPosts);
+          this.postService.setPosts(listOfPosts);
+        })
+      ).subscribe();
+  }
 
 }
