@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Post} from "../post.model";
 import {PostService} from "../post.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-post-edit',
@@ -11,7 +12,7 @@ import {PostService} from "../post.service";
 export class PostEditComponent {
   form!: FormGroup;
 
-  constructor(private postService: PostService) {
+  constructor(private postService: PostService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -30,5 +31,7 @@ export class PostEditComponent {
     const post: Post = new Post(title, description, imagePath, "someone", new Date());
 
     this.postService.addPost(post);
+
+    this.router.navigate([`/post-list`])
   }
 }
