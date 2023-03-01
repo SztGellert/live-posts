@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {BackEndService} from "../back-end.service";
 
 @Component({
   selector: 'app-header',
@@ -6,10 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor() {
+  constructor(private backEndService: BackEndService) {
   }
 
-  ngOnInit(): void{
+  ngOnInit(): void {
+  }
+
+  onSave() {
+    console.log("onSave() Called!")
+    this.backEndService.saveData();
   }
 
 }
