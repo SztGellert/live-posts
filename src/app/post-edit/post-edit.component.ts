@@ -49,8 +49,11 @@ export class PostEditComponent {
     const imagePath = this.form.value.imagePath;
 
     const post: Post = new Post(title, description, imagePath, "someone", new Date());
-
-    this.postService.addPost(post);
+    if (this.editMode) {
+      this.postService.updatePost(this.index, post);
+    } else {
+      this.postService.addPost(post);
+    }
 
     this.router.navigate([`/post-list`])
   }
