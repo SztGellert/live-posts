@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Post} from "../post.model";
 import {PostService} from "../post.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 
 @Component({
   selector: 'app-post-edit',
@@ -11,15 +11,35 @@ import {Router} from "@angular/router";
 })
 export class PostEditComponent {
   form!: FormGroup;
+  editMode = false;
+  private index: number = 0;
 
-  constructor(private postService: PostService, private router: Router) {
+  constructor(private postService: PostService, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
+    let title = '';
+    let description = '';
+    let imagePath = '';
+
+    this.route.params.subscribe((params: Params) => {
+      if (params['index']) {
+        console.log(params['index']);
+        this.index = params['index']
+
+        const post = this.postService.getPost(this.index);
+        title = post.title;
+        description = post.description;
+        imagePath = post.imagePath;
+
+        this.editMode = true;
+      }
+    });
+
     this.form = new FormGroup({
-      title: new FormControl(null, [Validators.required, Validators.maxLength(10)]),
-      description: new FormControl(null, [Validators.required]),
-      imagePath: new FormControl(null, [Validators.required])
+      title: new FormControl(title, [Validators.required, Validators.maxLength(10)]),
+      description: new FormControl(description, [Validators.required]),
+      imagePath: new FormControl(imagePath, [Validators.required])
     });
   }
 
