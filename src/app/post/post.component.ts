@@ -29,4 +29,9 @@ export class PostComponent {
     console.log("OnEdit() called!");
     this.router.navigate(["/post-edit", this.index])
   }
+
+  likePost() {
+    console.log("likePost() called!")
+    this.postService.likePost(this.index);
+  }
 }

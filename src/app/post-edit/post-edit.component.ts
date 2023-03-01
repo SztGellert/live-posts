@@ -48,7 +48,7 @@ export class PostEditComponent {
     const description = this.form.value.description;
     const imagePath = this.form.value.imagePath;
 
-    const post: Post = new Post(title, description, imagePath, "someone", new Date());
+    const post: Post = new Post(title, description, imagePath, "someone", new Date(), 0);
     if (this.editMode) {
       this.postService.updatePost(this.index, post);
     } else {

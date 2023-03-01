@@ -6,6 +6,10 @@
   src="{{post?.imagePath}}"
 >
 <p>Author: {{post?.author}}</p><p>Date: {{post?.datetimeCreated}}</p>
+<button (click)="likePost()" class="btn btn-default btn-sm" type="button">
+  <span class="glyphicon glyphicon-thumbs-up"></span> Like ({{ post?.numberOfLikes}})
+</button>
+<br/><br/>
 <button (click)="onEdit()" class="btn btn-success">Edit</button>|
 <button (click)="onDelete()" class="btn btn-danger">Delete</button>
 
