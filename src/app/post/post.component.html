@@ -5,7 +5,7 @@
   class="img-responsive"
   src="{{post?.imagePath}}"
 >
-<p>Author: {{post?.author}}</p><p>Date: {{post?.datetimeCreated}}</p>
+<p>Author: {{post?.author}}</p><p>Date: {{post?.datetimeCreated | date}}</p>
 <button (click)="likePost()" class="btn btn-default btn-sm" type="button">
   <span class="glyphicon glyphicon-thumbs-up"></span> Like ({{ post?.numberOfLikes}})
 </button>
