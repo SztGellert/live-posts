@@ -1,8 +1,9 @@
-import {Injectable} from "@angular/core";
+import {EventEmitter, Injectable} from "@angular/core";
 import {Post} from "./post.model";
 
 @Injectable({providedIn: 'root'})
 export class PostService {
+  listChangedEvent: EventEmitter<Post[]> = new EventEmitter()
   listOfPosts: Post[] = [
     //ew Post("Nature", "Nature is wild.",
     // "https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg?w=1380&t=st=1677535806~exp=1677536406~hmac=2f434eea7be8a7f5069f49434dd45295133e8b39287456eb6fc8104616ac03d1",
@@ -50,5 +51,6 @@ export class PostService {
 
   setPosts(listOfPosts: Post[]) {
     this.listOfPosts = listOfPosts;
+    this.listChangedEvent.emit(listOfPosts);
   }
 }

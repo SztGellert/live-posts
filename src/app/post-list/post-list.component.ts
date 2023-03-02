@@ -15,6 +15,8 @@ export class PostListComponent {
   }
 
   ngOnInit(): void {
-    this.listOfPosts = this.postService.getPosts();
+    this.postService.listChangedEvent.subscribe((listOfPos: Post[]) => {
+      this.listOfPosts = this.postService.getPosts();
+    })
   }
 }
