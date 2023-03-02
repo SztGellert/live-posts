@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Post} from "../post.model";
 import {PostService} from "../post.service";
@@ -9,7 +9,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
   templateUrl: './post-edit.component.html',
   styleUrls: ['./post-edit.component.css']
 })
-export class PostEditComponent {
+export class PostEditComponent implements OnInit {
   form!: FormGroup;
   editMode = false;
   private index: number = 0;

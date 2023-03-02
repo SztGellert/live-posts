@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Post} from "../post.model";
 import {PostService} from "../post.service";
 
@@ -7,7 +7,7 @@ import {PostService} from "../post.service";
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.css']
 })
-export class PostListComponent {
+export class PostListComponent implements OnInit {
 
   listOfPosts: Post[] = [];
 
@@ -15,7 +15,8 @@ export class PostListComponent {
   }
 
   ngOnInit(): void {
-    this.postService.listChangedEvent.subscribe((listOfPos: Post[]) => {
+    this.listOfPosts = this.postService.getPosts();
+    this.postService.listChangedEvent.subscribe((listOfPosts: Post[]) => {
       this.listOfPosts = this.postService.getPosts();
     })
   }
